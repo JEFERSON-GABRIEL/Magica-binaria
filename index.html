@@ -20,7 +20,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
 
         .container {
@@ -30,8 +30,9 @@
             border: 2px solid #39ff14;
             box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
             border-radius: 10px;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
+            overflow: hidden; /* Garante que nada saia da caixa */
         }
 
         /* Cores de Destaque */
@@ -40,29 +41,30 @@
         .neon-mint { color: #00ff9f; }
         .gray-text { color: #888888; }
 
-        /* Divisores Visuais */
+        /* Divisores Visuais CSS (Elimina o bug das faixas "=====") */
         .divider {
-            color: #39ff14;
+            border-top: 2px dashed #39ff14;
+            width: 100%;
             margin: 15px 0;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
         }
 
         /* Cabeçalhos */
         h1 {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: bold;
             margin-bottom: 5px;
+            line-height: 1.4;
         }
 
         h2 {
-            font-size: 2rem;
+            font-size: 1.9rem;
             font-weight: bold;
             margin: 10px 0;
+            line-height: 1.2;
         }
 
         h3 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-style: italic;
             margin-bottom: 15px;
         }
@@ -77,6 +79,7 @@
             padding: 15px;
             border: 1px dashed #444;
             border-radius: 8px;
+            width: 100%;
         }
 
         .dev-section, .teacher-section {
@@ -84,7 +87,7 @@
         }
 
         .credits-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: bold;
             color: #888888;
             margin-bottom: 8px;
@@ -153,7 +156,7 @@
 
         /* Grid da Cartela */
         .cartela-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: bold;
             margin-bottom: 15px;
         }
@@ -161,10 +164,10 @@
         .grid-cartela {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
-            gap: 8px;
+            gap: 6px;
             background-color: #0a1a0a;
             border: 2px solid #39ff14;
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             margin: 20px auto;
             max-width: 480px;
@@ -173,8 +176,8 @@
         .grid-num {
             background-color: #001100;
             color: #39ff14;
-            padding: 8px 0;
-            font-size: 1.1rem;
+            padding: 6px 0;
+            font-size: 1rem;
             font-weight: bold;
             border-radius: 4px;
             text-align: center;
@@ -196,6 +199,9 @@
             border-radius: 8px;
             margin: 15px 0;
             font-weight: bold;
+            font-size: 0.9rem;
+            overflow-x: auto; /* Evita quebra de layout se a tela for minúscula */
+            white-space: nowrap;
         }
 
         .text-left {
@@ -205,14 +211,27 @@
             font-size: 0.95rem;
         }
 
-        /* Ajustes para Celular */
+        /* Ajustes Responsivos de Celular */
         @media (max-width: 500px) {
-            .grid-cartela {
-                grid-template-columns: repeat(4, 1fr);
+            .container {
+                padding: 15px;
             }
-            h2 { font-size: 1.6rem; }
-            button { padding: 10px 18px; font-size: 0.95rem; }
-            .result-number { font-size: 4rem; }
+            .grid-cartela {
+                grid-template-columns: repeat(8, 1fr); /* Mantém 8 colunas para visual clássico */
+                gap: 3px;
+                padding: 6px;
+            }
+            .grid-num {
+                font-size: 0.75rem;
+                padding: 4px 0;
+            }
+            h1 { font-size: 0.85rem; }
+            h2 { font-size: 1.4rem; }
+            h3 { font-size: 1rem; }
+            .cartela-title { font-size: 1rem; }
+            button { padding: 8px 14px; font-size: 0.85rem; margin: 3px; }
+            .result-number { font-size: 3.5rem; }
+            .credits-list { font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -222,11 +241,11 @@
         
         <div id="tela-inicial" class="screen active">
             <h1>ESCOLA ESTADUAL ETALÍVIO PEREIRA MARTINS</h1>
-            <div class="divider">================================================</div>
+            <div class="divider"></div>
             <p class="gray-text" style="font-size: 0.9rem; font-weight: bold;">PROJETO:</p>
             <h2 class="neon-mint">DO CÓDIGO À REALIDADE</h2>
             <h3 class="neon-cyan">A Mágica da Lógica Binária</h3>
-            <div class="divider">================================================</div>
+            <div class="divider"></div>
 
             <div class="credits-box">
                 <div class="dev-section">
@@ -243,7 +262,8 @@
                 <div class="teacher-section">
                     <p class="credits-title">Orientação dos Professores:</p>
                     <ul class="credits-list">
-                        <li class="neon-cyan">👨‍🏫 Reinaldo Costa da Silva &nbsp;|&nbsp; 👩‍🏫 Jane</li>
+                        <li class="neon-cyan">👨‍🏫 Reinaldo Costa da Silva</li>
+                        <li class="neon-cyan">👩‍🏫 Jane Andrea Lima dos Santos</li>
                     </ul>
                 </div>
             </div>
@@ -252,8 +272,8 @@
         </div>
 
         <div id="tela-jogo" class="screen">
-            <h2 class="neon-mint" style="font-size: 1.6rem;">Pense em um número de 0 a 127!</h2>
-            <p class="gray-text" style="margin-bottom: 15px;">Responda se o seu número está na cartela abaixo:</p>
+            <h2 class="neon-mint" style="font-size: 1.4rem;">Pense em um número de 0 a 127!</h2>
+            <p class="gray-text" style="margin-bottom: 15px; font-size: 0.9rem;">O número está na cartela abaixo?</p>
             
             <div class="cartela-title neon-cyan" id="cartela-titulo">Cartela X (Peso: Y)</div>
             
@@ -270,7 +290,7 @@
             <h2 class="neon-mint">✨ MÁGICA CONCLUÍDA! ✨</h2>
             <p class="gray-text">O número que você pensou foi:</p>
             <div class="result-number neon-green" id="num-resultado">0</div>
-            <p style="margin-bottom: 25px; font-style: italic;">Gostaria de ver como o computador desvendou seu número?</p>
+            <p style="margin-bottom: 25px; font-style: italic; font-size: 0.95rem;">Quer ver como o computador desvendou seu número?</p>
             
             <div>
                 <button class="btn-sim" onclick="iniciarJogo()">Jogar Novamente</button>
@@ -280,30 +300,30 @@
         </div>
 
         <div id="tela-explicacao" class="screen">
-            <h2 class="neon-mint" style="font-size: 1.6rem;">Desvendando a Lógica Binária</h2>
+            <h2 class="neon-mint" style="font-size: 1.5rem;">Desvendando a Lógica</h2>
             
             <div class="text-left">
-                Não é adivinhação, é pura matemática! Cada cartela possui um "valor de partida" (peso) que é o primeiro número dela. Eles seguem as <strong>potências de 2</strong>:
+                Não é adivinhação! Cada cartela possui um "valor de partida" (peso) que é o primeiro número dela. Eles seguem as <strong>potências de 2</strong>:
             </div>
 
             <div class="explanation-box">
-                <span style="color: #888;">Cartela:  1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5 &nbsp; 6 &nbsp; 7</span><br>
-                <span class="neon-green">Peso:     1 &nbsp; 2 &nbsp; 4 &nbsp; 8 &nbsp;16 &nbsp;32 &nbsp;64</span>
+                <span style="color: #888;">Cartela: 1  2  3  4  5  6  7</span><br>
+                <span class="neon-green">Peso:    1  2  4  8 16 32 64</span>
             </div>
 
             <div class="text-left">
-                Quando você diz <span class="neon-green">SIM</span>, o programa pega o peso de partida daquela cartela e guarda para somar. Se diz <span class="neon-nao" style="color:#ff3366">NÃO</span>, ele ignora. No fim, a mágica é só somar esses valores correspondentes!<br><br>
+                Quando você diz <span class="neon-green">SIM</span>, o programa soma o valor de partida daquela cartela. Se diz <span class="neon-nao" style="color:#ff3366">NÃO</span>, ele ignora. No fim, a mágica é só somar esses pesos correspondentes!<br><br>
                  No seu caso, você disse SIM para os pesos:<br>
-                <span class="neon-cyan" id="explicacao-soma" style="font-size: 1.1rem;">0</span>
+                <span class="neon-cyan" id="explicacao-soma" style="font-size: 1.05rem;">0</span>
             </div>
 
             <div class="text-left" style="border-top: 1px solid #333; padding-top: 15px;">
-                <strong>Na linguagem dos computadores:</strong><br>
-                • Resposta <strong>SIM</strong> equivale ao bit <span class="neon-green">1 (LIGADO)</span><br>
-                • Resposta <strong>NÃO</strong> equivale ao bit <span class="neon-nao" style="color:#ff3366">0 (DESLIGADO)</span>
+                <strong>Linguagem do computador:</strong><br>
+                • Resposta <strong>SIM</strong> = bit <span class="neon-green">1 (LIGADO)</span><br>
+                • Resposta <strong>NÃO</strong> = bit <span class="neon-nao" style="color:#ff3366">0 (DESLIGADO)</span>
             </div>
 
-            <h3 class="neon-cyan" id="explicacao-binario" style="margin-top: 15px; font-style: normal;"></h3>
+            <h3 class="neon-cyan" id="explicacao-binario" style="margin-top: 15px; font-style: normal; font-size: 1.1rem;"></h3>
 
             <div style="margin-top: 25px;">
                 <button class="btn-sim" onclick="iniciarJogo()">Jogar Novamente</button>
